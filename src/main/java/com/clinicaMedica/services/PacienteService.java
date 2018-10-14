@@ -26,6 +26,10 @@ public class PacienteService {
 	public Paciente findOne(Long id) {
 		return repository.findById(id).orElse(new Paciente());
 	}
+	
+	public Paciente findPacienteByConsulta(Long id) {
+		return this.repository.findPacienteByConsulta(id);
+	}
 
 	public boolean exists(Long id) {
 		return repository.existsById(id);

@@ -48,6 +48,11 @@ private Logger log = LoggerFactory.getLogger(Paciente.class);
 		log.debug("[find] Paciente NÃO encontrado.");
 		return ResponseEntity.notFound().build();
 	}
+	
+	@GetMapping(path = "/api/pacientes/consulta/{id}")
+	public ResponseEntity<?> findPacienteByConsulta(@PathVariable("id") Long id){
+		return ResponseEntity.ok(service.findPacienteByConsulta(id));
+	}
 
 	@DeleteMapping(path = "/api/pacientes/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
