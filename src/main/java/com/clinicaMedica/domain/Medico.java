@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -39,6 +40,17 @@ public class Medico extends Usuario implements Serializable {
 	private Proprietario proprietario;
 	@OneToMany(mappedBy = "medico")
 	private List<Consulta> consultas = new ArrayList<>();
+	
+	@OneToOne(mappedBy = "medico")
+	private Login login;
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 
 	public Medico() {
 	}

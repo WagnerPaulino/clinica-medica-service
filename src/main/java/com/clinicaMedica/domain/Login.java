@@ -2,6 +2,7 @@ package com.clinicaMedica.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,22 +28,22 @@ public class Login implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String usuario;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String senha;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Medico medico;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Paciente paciente;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Proprietario proprietario;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Recepcionista recepcionista;
 
 	public Login() {

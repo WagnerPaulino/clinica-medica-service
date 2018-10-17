@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -31,6 +32,17 @@ public class Proprietario extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "proprietario")
 	@JsonIgnore
 	private List<Medico> medicos;
+	
+	@OneToOne(mappedBy = "proprietario")
+	private Login login;
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 
 	public Proprietario() {
 		super();

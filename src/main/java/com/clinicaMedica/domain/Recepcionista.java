@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -31,10 +32,6 @@ public class Recepcionista extends Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String login;
-	@Column
-	private String senha;
-	@Column
 	private Boolean adm;
 	@Column
 	private String cfpExistente;
@@ -46,7 +43,10 @@ public class Recepcionista extends Usuario implements Serializable{
 	private Proprietario proprietario;
 	@OneToMany(mappedBy = "recepcionistas")
 	private List<Consulta> consultas;
-
+	
+	@OneToOne(mappedBy = "recepcionista")
+	private Login login;
+	
 	public Recepcionista() {
 	}
 
@@ -56,22 +56,6 @@ public class Recepcionista extends Usuario implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public Boolean getAdm() {
@@ -120,8 +104,6 @@ public class Recepcionista extends Usuario implements Serializable{
 		int result = super.hashCode();
 		result = prime * result + ((cfpExistente == null) ? 0 : cfpExistente.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
@@ -148,11 +130,6 @@ public class Recepcionista extends Usuario implements Serializable{
 			if (other.login != null)
 				return false;
 		} else if (!login.equals(other.login))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -34,8 +35,19 @@ public class Paciente extends Usuario implements Serializable {
 	
 	@OneToMany(mappedBy = "paciente")
 	private List<Consulta> consultas;
+	
+	@OneToOne(mappedBy = "paciente")
+	private Login login;
 
-    public Paciente() {
+    public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+	public Paciente() {
     }
     
     public Long getIdPaciente() {
