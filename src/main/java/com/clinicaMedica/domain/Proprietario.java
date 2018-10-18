@@ -3,6 +3,7 @@ package com.clinicaMedica.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class Proprietario extends Usuario implements Serializable {
 	@JsonIgnore
 	private List<Medico> medicos;
 	
-	@OneToOne(mappedBy = "proprietario")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Login login;
 
 	public Login getLogin() {

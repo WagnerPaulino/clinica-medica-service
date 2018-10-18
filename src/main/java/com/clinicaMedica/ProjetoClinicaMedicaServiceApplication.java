@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import com.clinicaMedica.domain.Login;
 import com.clinicaMedica.domain.Proprietario;
 import com.clinicaMedica.services.LoginService;
+import com.clinicaMedica.services.ProprietarioService;
 
 /*Para testar, comente nas classes a linha 
  * @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,8 +20,8 @@ public class ProjetoClinicaMedicaServiceApplication implements CommandLineRunner
 
 	// @Autowired
 	// private MedicoService medicoService;
-//	@Autowired
-//	private ProprietarioService proprietarioService;
+	@Autowired
+	private ProprietarioService proprietarioService;
 	// @Autowired
 	// private ConsultaService consultaService;
 	//
@@ -47,7 +48,7 @@ public class ProjetoClinicaMedicaServiceApplication implements CommandLineRunner
 		p.setLogin(l);
 		l.setProprietario(p);
 		if (loginService.sign(l.getUsuario(), l.getSenha()) == null) {
-			this.loginService.save(l);
+			this.proprietarioService.insert(p);
 		}
 		// double x = 1.70;
 		// int y = 12;

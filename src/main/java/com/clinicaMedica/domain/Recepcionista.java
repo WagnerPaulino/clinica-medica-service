@@ -3,6 +3,7 @@ package com.clinicaMedica.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,10 +42,10 @@ public class Recepcionista extends Usuario implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference(value = "proprietario")
 	private Proprietario proprietario;
-	@OneToMany(mappedBy = "recepcionistas")
+	@OneToMany(mappedBy = "recepcionistas",cascade = CascadeType.ALL)
 	private List<Consulta> consultas;
 	
-	@OneToOne(mappedBy = "recepcionista")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Login login;
 	
 	public Recepcionista() {
