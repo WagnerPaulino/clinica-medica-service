@@ -1,7 +1,5 @@
 package com.clinicaMedica;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,14 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 import com.clinicaMedica.domain.Login;
-import com.clinicaMedica.domain.Paciente;
-import com.clinicaMedica.domain.Recepcionista;
-import com.clinicaMedica.services.ConsultaService;
+import com.clinicaMedica.domain.Proprietario;
 import com.clinicaMedica.services.LoginService;
-import com.clinicaMedica.services.MedicoService;
-import com.clinicaMedica.services.PacienteService;
 import com.clinicaMedica.services.ProprietarioService;
-import com.clinicaMedica.services.RecepcionistaService;
 
 /*Para testar, comente nas classes a linha 
  * @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,19 +18,19 @@ import com.clinicaMedica.services.RecepcionistaService;
 @EnableCaching
 public class ProjetoClinicaMedicaServiceApplication implements CommandLineRunner {
 
-	 @Autowired
-	 private MedicoService medicoService;
+//	 @Autowired
+//	 private MedicoService medicoService;
 	@Autowired
 	private ProprietarioService proprietarioService;
-	 @Autowired
-	 private ConsultaService consultaService;
-	
-	 @Autowired
-	 private PacienteService pacienteService;
-	
-	 @Autowired
-	 private RecepcionistaService recepcionistaService;
-
+//	 @Autowired
+//	 private ConsultaService consultaService;
+//	
+//	 @Autowired
+//	 private PacienteService pacienteService;
+//	
+//	 @Autowired
+//	 private RecepcionistaService recepcionistaService;
+//
 	@Autowired
 	private LoginService loginService;
 
@@ -47,38 +40,38 @@ public class ProjetoClinicaMedicaServiceApplication implements CommandLineRunner
 
 	@Override
 	public void run(String... args) throws Exception {
-		//login
-		Login l = new Login();
-		l.setUsuario("a");
-		l.setSenha("a");
-		//recepcionista
-		Recepcionista r = new Recepcionista();
-		r.setNome("r");
-		r.setLogin(l);
-		recepcionistaService.insert(r);
-		
-		Login l2 = new Login();
-		l2.setUsuario("b");
-		l2.setSenha("b");
-		
-		//paciente
-		Paciente p = new Paciente();
-		p.setNome("r");
-		p.setLogin(l2);
-		p.setRecepcionistas(Arrays.asList(r));
-		pacienteService.insert(p);
-		
-		
-//		Proprietario p = new Proprietario();
-//		p.setNome("Adm");
+//		//login
 //		Login l = new Login();
-//		l.setUsuario("adm");
-//		l.setSenha("adm");
-//		p.setLogin(l);
-//		l.setProprietario(p);
-//		if (loginService.sign(l.getUsuario(), l.getSenha()) == null) {
-//			this.proprietarioService.insert(p);
-//		}
+//		l.setUsuario("a");
+//		l.setSenha("a");
+//		//recepcionista
+//		Recepcionista r = new Recepcionista();
+//		r.setNome("r");
+//		r.setLogin(l);
+//		recepcionistaService.insert(r);
+//		
+//		Login l2 = new Login();
+//		l2.setUsuario("b");
+//		l2.setSenha("b");
+//		
+//		//paciente
+//		Paciente p = new Paciente();
+//		p.setNome("r");
+//		p.setLogin(l2);
+//		p.setRecepcionistas(Arrays.asList(r));
+//		pacienteService.insert(p);
+		
+		
+		Proprietario p = new Proprietario();
+		p.setNome("Adm");
+		Login l = new Login();
+		l.setUsuario("adm");
+		l.setSenha("adm");
+		p.setLogin(l);
+		l.setProprietario(p);
+		if (loginService.sign(l.getUsuario(), l.getSenha()) == null) {
+			this.proprietarioService.insert(p);
+		}
 		// double x = 1.70;
 		// int y = 12;
 		// Consulta consulta = new Consulta(1L, "X", "X", "X", "X", "X", "X", x, x, y,
