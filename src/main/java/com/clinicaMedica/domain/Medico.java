@@ -42,7 +42,7 @@ public class Medico extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "medico")
 	private List<Consulta> consultas = new ArrayList<>();
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	private Login login;
 
 	public Login getLogin() {

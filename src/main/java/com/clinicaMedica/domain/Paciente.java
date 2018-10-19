@@ -37,7 +37,7 @@ public class Paciente extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "paciente")
 	private List<Consulta> consultas;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	private Login login;
 
     public Login getLogin() {

@@ -34,7 +34,7 @@ public class Proprietario extends Usuario implements Serializable {
 	@JsonIgnore
 	private List<Medico> medicos;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	private Login login;
 
 	public Login getLogin() {

@@ -45,7 +45,7 @@ public class Recepcionista extends Usuario implements Serializable{
 	@OneToMany(mappedBy = "recepcionistas",cascade = CascadeType.ALL)
 	private List<Consulta> consultas;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	private Login login;
 	
 	public Recepcionista() {
@@ -97,6 +97,14 @@ public class Recepcionista extends Usuario implements Serializable{
 
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	@Override
