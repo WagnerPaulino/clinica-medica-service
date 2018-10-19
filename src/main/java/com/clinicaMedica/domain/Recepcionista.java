@@ -36,7 +36,7 @@ public class Recepcionista extends Usuario implements Serializable{
 	private Boolean adm;
 	@Column
 	private String cfpExistente;
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy= "recepcionistas")
 	@JsonBackReference(value = "pacientes")
 	private List<Paciente> pacientes;
 	@ManyToOne(fetch = FetchType.LAZY)
