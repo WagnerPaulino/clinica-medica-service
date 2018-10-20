@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "paciente")
@@ -32,7 +31,6 @@ public class Paciente extends Usuario implements Serializable {
     private Long idPaciente;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JsonIgnore
     private List<Recepcionista> recepcionistas;
 	
 	@OneToMany(mappedBy = "paciente")
