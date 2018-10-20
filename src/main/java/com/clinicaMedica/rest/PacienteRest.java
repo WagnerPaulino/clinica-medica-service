@@ -23,11 +23,11 @@ import com.clinicaMedica.services.PacienteService;
 @RestController
 @CrossOrigin
 public class PacienteRest {
-private Logger log = LoggerFactory.getLogger(Paciente.class);
-	
+	private Logger log = LoggerFactory.getLogger(Paciente.class);
+
 	@Autowired
 	private PacienteService service;
-	
+
 	@GetMapping(path = "/api/pacientes")
 	public ResponseEntity<?> findAll() {
 		log.debug("[findAll] Requisição para buscar todos pacientes");
@@ -48,10 +48,10 @@ private Logger log = LoggerFactory.getLogger(Paciente.class);
 		log.debug("[find] Paciente NÃO encontrado.");
 		return ResponseEntity.notFound().build();
 	}
-	
-	@GetMapping(path = "/api/pacientes/consulta/{id}")
-	public ResponseEntity<?> findPacienteByConsulta(@PathVariable("id") Long id){
-		return ResponseEntity.ok(service.findPacienteByConsulta(id));
+
+	@GetMapping(path = "/api/pacientes/consulta")
+	public ResponseEntity<?> findPacienteByConsulta() {
+		return ResponseEntity.ok(service.findPacienteByConsulta());
 	}
 
 	@DeleteMapping(path = "/api/pacientes/{id}")

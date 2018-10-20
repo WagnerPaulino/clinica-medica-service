@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.clinicaMedica.domain.Medico;
@@ -27,8 +28,9 @@ public class MedicoService {
 		return repository.findById(id).orElse(new Medico());
 	}
 	
-	public Medico findMedicoByConsulta(Long id) {
-		return this.repository.findMedicoByConsulta(id);
+	@Cacheable(value = "medicoConsulta")
+	public Medico findMedicoByConsulta() {
+		return this.repository.findMedicoByConsulta();
 	}
 
 	public boolean exists(Long id) {
@@ -36,21 +38,28 @@ public class MedicoService {
 	}
 
 	@Transactional
-	@CacheEvict(value = "medico", allEntries = true)
+	@Caching(evict = {
+			@CacheEvict(value = "medico", allEntries = true),
+			@CacheEvict(value = "medicoConsulta", allEntries = true)		  
+		})
 	public void delete(Long id) {
 		repository.delete(repository.findById(id).orElse(new Medico()));
 	}
 
 	@Transactional
 	@CachePut(value = "medico")
-	@CacheEvict(value = "medico", allEntries = true)
+	@Caching(evict = {
+			@CacheEvict(value = "medico", allEntries = true),
+			@CacheEvict(value = "medicoConsulta", allEntries = true)		  
+		})
 	public Medico insert(Medico newMedico) {
 		return repository.save(newMedico);
 	}
 
 	@Transactional
 	@CachePut(value = "medico")
-	@CacheEvict(value = "medico", allEntries = true)
+	@Caching(evict = { @CacheEvict(value = "medico", allEntries = true),
+			@CacheEvict(value = "medicoConsulta", allEntries = true) })
 	public Medico update(Medico newMedico) {
 		return repository.save(newMedico);
 	}
