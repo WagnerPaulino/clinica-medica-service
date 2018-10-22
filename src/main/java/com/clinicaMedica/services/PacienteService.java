@@ -28,7 +28,7 @@ public class PacienteService {
 		return repository.findById(id).orElse(new Paciente());
 	}
 
-	@Cacheable(value = "pacienteConsulta")
+	@Cacheable(value = "pacienteConsulta", key = "#idConsulta")
 	public Paciente findPacienteByConsulta(Long idConsulta) {
 		return this.repository.findPacienteByConsulta(idConsulta);
 	}
