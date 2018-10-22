@@ -50,7 +50,7 @@ public class MedicoRest {
 	}
 	
 	@GetMapping(path = "/api/medicos/consulta")
-	public ResponseEntity<?> findMedicoByConsulta(@PathVariable("id") Long id){
+	public ResponseEntity<?> findMedicoByConsulta(Long id){
 		return ResponseEntity.ok(service.findMedicoByConsulta());
 	}
 
