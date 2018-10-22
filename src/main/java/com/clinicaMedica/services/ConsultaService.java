@@ -23,7 +23,8 @@ public class ConsultaService {
 	public List<Consulta> findAll() {
 		return repository.findAll();
 	}
-
+	
+	@Cacheable(value = "consulta", key = "#id")
 	public Consulta findOne(Long id) {
 		return repository.findById(id).orElse(new Consulta());
 	}

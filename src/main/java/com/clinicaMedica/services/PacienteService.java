@@ -24,6 +24,7 @@ public class PacienteService {
 		return repository.findAll();
 	}
 
+	@Cacheable(value = "paciente", key = "#id")
 	public Paciente findOne(Long id) {
 		return repository.findById(id).orElse(new Paciente());
 	}

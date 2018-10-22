@@ -24,6 +24,7 @@ public class RecepcionistaService {
 		return repository.findAll();
 	}
 
+	@Cacheable(value = "recepcionista", key = "#id")
 	public Recepcionista findOne(Long id) {
 		return repository.findById(id).orElse(new Recepcionista());
 	}

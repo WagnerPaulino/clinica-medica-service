@@ -22,7 +22,7 @@ public class ProprietarioService {
 	public List<Proprietario> findAll() {
 		return repository.findAll();
 	}
-
+	@Cacheable(value = "proprietario", key = "#id")
 	public Proprietario findOne(Long id) {
 		return repository.findById(id).orElse(new Proprietario());
 	}

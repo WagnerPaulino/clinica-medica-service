@@ -23,7 +23,7 @@ public class MedicoService {
 	public List<Medico> findAll() {
 		return repository.findAll();
 	}
-
+	@Cacheable(value = "medico", key = "#id")
 	public Medico findOne(Long id) {
 		return repository.findById(id).orElse(new Medico());
 	}
