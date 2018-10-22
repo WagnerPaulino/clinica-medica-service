@@ -29,8 +29,8 @@ public class MedicoService {
 	}
 	
 	@Cacheable(value = "medicoConsulta")
-	public Medico findMedicoByConsulta() {
-		return this.repository.findMedicoByConsulta();
+	public Medico findMedicoByConsulta(Long idConsulta) {
+		return this.repository.findMedicoByConsulta(idConsulta);
 	}
 
 	public boolean exists(Long id) {

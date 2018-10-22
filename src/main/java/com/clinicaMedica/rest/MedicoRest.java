@@ -49,9 +49,9 @@ public class MedicoRest {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping(path = "/api/medicos/consulta")
-	public ResponseEntity<?> findMedicoByConsulta(Long id){
-		return ResponseEntity.ok(service.findMedicoByConsulta());
+	@GetMapping(path = "/api/medicos/consulta/{idConsulta}")
+	public ResponseEntity<?> findMedicoByConsulta(@PathVariable("idConsulta")Long idConsulta){
+		return ResponseEntity.ok(service.findMedicoByConsulta(idConsulta));
 	}
 
 	@DeleteMapping(path = "/api/medicos/{id}")
