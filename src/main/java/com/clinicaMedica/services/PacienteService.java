@@ -29,7 +29,6 @@ public class PacienteService {
 		return repository.findById(id).orElse(new Paciente());
 	}
 
-	@Cacheable(value = "pacienteConsulta", key = "#idConsulta")
 	public Paciente findPacienteByConsulta(Long idConsulta) {
 		return this.repository.findPacienteByConsulta(idConsulta);
 	}
@@ -40,24 +39,21 @@ public class PacienteService {
 
 	@Transactional
 	@CacheEvict(value = "paciente", allEntries = true)
-	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true),
-			@CacheEvict(value = "pacienteConsulta", allEntries = true) })
+	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true) })
 	public void delete(Long id) {
 		repository.delete(repository.findById(id).orElse(new Paciente()));
 	}
 
 	@Transactional
 	@CachePut(value = "paciente")
-	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true),
-			@CacheEvict(value = "pacienteConsulta", allEntries = true) })
+	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true) })
 	public Paciente insert(Paciente newPaciente) {
 		return repository.save(newPaciente);
 	}
 
 	@Transactional
 	@CachePut(value = "paciente")
-	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true),
-			@CacheEvict(value = "pacienteConsulta", allEntries = true) })
+	@Caching(evict = { @CacheEvict(value = "paciente", allEntries = true) })
 	public Paciente update(Paciente newPaciente) {
 		return repository.save(newPaciente);
 	}
