@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "consulta")
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "uuid")
-public class Consulta implements Serializable{
+public class Consulta implements Serializable {
 
 	/**
 	 * 
@@ -49,6 +49,8 @@ public class Consulta implements Serializable{
 	private String dtConsulta;
 	@Column
 	private String dtRetorno;
+	@Column
+	private Boolean realizada;
 	@Column
 	private Double valorConsulta;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -98,6 +100,14 @@ public class Consulta implements Serializable{
 
 	public String getTratamento() {
 		return tratamento;
+	}
+
+	public Boolean getRealizada() {
+		return realizada;
+	}
+
+	public void setRealizada(Boolean realizada) {
+		this.realizada = realizada;
 	}
 
 	public void setTratamento(String tratamento) {
