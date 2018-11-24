@@ -1,11 +1,12 @@
 package com.clinicaMedica.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 	/**
 	 * 
 	 */
@@ -16,7 +17,7 @@ public class Usuario implements Serializable{
 	private String celular;
 	private String residencial;
 	private String email;
-	private String dtNascimento;
+	private LocalDate dtNascimento;
 	private String sexo;
 	private String rua;
 	private String numCasa;
@@ -75,11 +76,11 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 
-	public String getDtNascimento() {
+	public LocalDate getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(String dtNascimento) {
+	public void setDtNascimento(LocalDate dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 

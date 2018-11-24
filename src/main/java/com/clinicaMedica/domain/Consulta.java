@@ -1,6 +1,7 @@
 package com.clinicaMedica.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Consulta implements Serializable {
 
 	/**
-	 * 
+	 * select count(id), exame,sintomas from consulta where dt_consulta = getDate() and realizada = false group by exame;
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -46,9 +47,9 @@ public class Consulta implements Serializable {
 	@Column
 	private Integer pressao;
 	@Column
-	private String dtConsulta;
+	private LocalDate dtConsulta;
 	@Column
-	private String dtRetorno;
+	private LocalDate dtRetorno;
 	@Column
 	private Boolean realizada;
 	@Column
@@ -154,19 +155,19 @@ public class Consulta implements Serializable {
 		this.pressao = pressao;
 	}
 
-	public String getDtConsulta() {
+	public LocalDate getDtConsulta() {
 		return dtConsulta;
 	}
 
-	public void setDtConsulta(String dtConsulta) {
+	public void setDtConsulta(LocalDate dtConsulta) {
 		this.dtConsulta = dtConsulta;
 	}
 
-	public String getDtRetorno() {
+	public LocalDate getDtRetorno() {
 		return dtRetorno;
 	}
 
-	public void setDtRetorno(String dtRetorno) {
+	public void setDtRetorno(LocalDate dtRetorno) {
 		this.dtRetorno = dtRetorno;
 	}
 
