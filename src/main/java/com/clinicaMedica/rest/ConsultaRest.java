@@ -23,11 +23,11 @@ import com.clinicaMedica.services.ConsultaService;
 @RestController
 @CrossOrigin
 public class ConsultaRest {
-private Logger log = LoggerFactory.getLogger(Consulta.class);
-	
+	private Logger log = LoggerFactory.getLogger(Consulta.class);
+
 	@Autowired
 	private ConsultaService service;
-	
+
 	@GetMapping(path = "/api/consultas")
 	public ResponseEntity<?> findAll() {
 		log.debug("[findAll] Requisição para buscar todos consultas");
@@ -47,6 +47,11 @@ private Logger log = LoggerFactory.getLogger(Consulta.class);
 		}
 		log.debug("[find] Consulta NÃO encontrado.");
 		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping(path = "/api/count/consultas-proximos-dias")
+	public ResponseEntity<?> countConsultasProximosDias() {
+		return ResponseEntity.ok(this.service.countConsultasProximosDias());
 	}
 
 	@DeleteMapping(path = "/api/consultas/{id}")

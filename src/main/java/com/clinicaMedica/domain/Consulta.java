@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Consulta implements Serializable {
 
 	/**
-	 * select count(id), exame,sintomas from consulta where dt_consulta = getDate() and realizada = false group by exame;
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id

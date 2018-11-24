@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.clinicaMedica.domain.Consulta;
+import com.clinicaMedica.projections.CountConsultaProximosDias;
 import com.clinicaMedica.repositorys.ConsultaRepository;
 
 @Service
@@ -34,10 +35,16 @@ public class ConsultaService {
 		return repository.existsById(id);
 	}
 
+	@Cacheable(value = "countConsultasProximosDias")
+	public List<CountConsultaProximosDias> countConsultasProximosDias() {
+		return this.repository.countConsultasProximosDias();
+	}
+
 	@Transactional
 	@Caching(evict = { @CacheEvict(value = "consulta", allEntries = true),
 			@CacheEvict(value = "pacienteConsulta", allEntries = true),
-			@CacheEvict(value = "medicoConsulta", allEntries = true) })
+			@CacheEvict(value = "medicoConsulta", allEntries = true),
+			@CacheEvict(value = "countConsultasProximosDias", allEntries = true) })
 	public void delete(Long id) {
 		repository.delete(repository.findById(id).orElse(new Consulta()));
 	}
@@ -46,7 +53,8 @@ public class ConsultaService {
 	@CachePut(value = "consulta")
 	@Caching(evict = { @CacheEvict(value = "consulta", allEntries = true),
 			@CacheEvict(value = "pacienteConsulta", allEntries = true),
-			@CacheEvict(value = "medicoConsulta", allEntries = true) })
+			@CacheEvict(value = "medicoConsulta", allEntries = true),
+			@CacheEvict(value = "countConsultasProximosDias", allEntries = true) })
 	public Consulta insert(Consulta newConsulta) {
 		return repository.save(newConsulta);
 	}
@@ -55,7 +63,8 @@ public class ConsultaService {
 	@CachePut(value = "consulta")
 	@Caching(evict = { @CacheEvict(value = "consulta", allEntries = true),
 			@CacheEvict(value = "pacienteConsulta", allEntries = true),
-			@CacheEvict(value = "medicoConsulta", allEntries = true) })
+			@CacheEvict(value = "medicoConsulta", allEntries = true),
+			@CacheEvict(value = "countConsultasProximosDias", allEntries = true) })
 	public Consulta update(Consulta newConsulta) {
 		return repository.save(newConsulta);
 	}
