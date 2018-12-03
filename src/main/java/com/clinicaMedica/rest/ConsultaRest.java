@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.clinicaMedica.domain.Consulta;
 import com.clinicaMedica.services.ConsultaService;
@@ -27,6 +29,13 @@ public class ConsultaRest {
 
 	@Autowired
 	private ConsultaService service;
+	
+	@GetMapping("api/consultas/prontuario/{id}")
+	public ModelAndView index(@PathVariable("id") Long id, Model model) {
+		Consulta consulta = service.findOne(id);
+		model.addAttribute("consulta",consulta);
+		return new ModelAndView("prontuario");
+	}
 
 	@GetMapping(path = "/api/consultas")
 	public ResponseEntity<?> findAll() {

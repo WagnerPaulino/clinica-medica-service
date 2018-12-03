@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Prontuario Médico</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+* {
+	padding: 0;
+	margin: 0;
+	transition: width 2s, height 2s;
+}
+
+body {
+	transition: width 2s, height 2s;
+}
+
+#main {
+	display: grid;
+	grid-template-rows: 15vh 10vh 55vh 20vh;
+	grid-template-areas: "header header" "content content" "content content"
+		"footer footer";
+	transition: width 2s, height 2s;
+}
+
+.mainHeader {
+	grid-area: header;
+	text-align: center;
+}
+
+.mainNav {
+	grid-area: nav;
+	text-align: center;
+}
+
+.mainContent {
+	grid-area: content;
+	text-align: center;
+}
+
+.mainAside {
+	grid-area: aside;
+	text-align: center;
+}
+
+.mainFooter {
+	grid-area: footer;
+}
+</style>
+</head>
+<body onload="window.print()">
+	<section id="main">
+		<header class="mainHeader">
+			<h1>Prontuario Medico</h1>
+		</header>
+		<article class="mainContent">
+			<p th:text="'Exame: '+${session.consulta?.exame}"></p>
+			<p th:text="'Especialidade: '+${consulta?.especialidade}"></p>
+			<p th:text="'Diagnostico: '+${consulta?.diagnostico}"></p>
+			<p th:text="'Tratamento: '+${consulta?.tratamento}"></p>
+			<p th:text="'Sintomas: '+${consulta?.sintomas}"></p>
+			<p th:text="'Descrição: '+${consulta?.descricao}"></p>
+			<p th:text="'Data da Consulta: '+${consulta?.dtConsulta}"></p>
+			<p th:text="'Data de Retorno: '+${consulta?.dtRetorno}"></p>
+		</article>
+		<footer class="mainFooter">
+			<hr />
+			<div th:object="${consulta.medico}">
+				<p th:text="'Nome do Medico: '+ *{nome}"></p>
+				<p th:text="'CRM do Medico '+ *{idCrm}"></p>
+			</div>
+			<div th:object="${consulta.paciente}">
+				<p th:text="'Nome do Paciente '+ *{nome}"></p>
+				<p th:text="'CPF do Paciente '+ *{cpf}"></p>
+				<p th:text="'RG do Paciente '+ *{rg}"></p>
+			</div>
+
+
+		</footer>
+	</section>
+</body>
+</html>

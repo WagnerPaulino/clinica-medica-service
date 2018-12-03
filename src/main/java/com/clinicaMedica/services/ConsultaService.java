@@ -27,6 +27,7 @@ public class ConsultaService {
 	}
 
 	@Cacheable(value = "consulta", key = "#id")
+	@Transactional
 	public Consulta findOne(Long id) {
 		return repository.findById(id).orElse(new Consulta());
 	}
