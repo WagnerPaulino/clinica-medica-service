@@ -70,6 +70,9 @@ body {
 			<div th:object="${consulta.paciente}">
 				<p th:text="'Assinatura do Paciente '+ *{nome}+':'"><div class="linha"></div></p>
 			</div>
+			<div th:object="${consulta.medico}">
+				<p th:text="'Assinatura do Medico '+ *{nome}+':'"><div class="linha"></div></p>
+			</div>
 		</article>
 		<footer class="mainFooter">
 			<hr />
