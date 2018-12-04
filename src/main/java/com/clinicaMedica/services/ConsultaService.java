@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -30,6 +31,13 @@ public class ConsultaService {
 	@Transactional
 	public Consulta findOne(Long id) {
 		return repository.findById(id).orElse(new Consulta());
+	}
+	
+	@Transactional
+	public Consulta findProntuario(Long id) {
+		Consulta consulta = repository.findById(id).orElse(new Consulta());
+		Hibernate.initialize(consulta);
+		return consulta; 
 	}
 
 	public boolean exists(Long id) {

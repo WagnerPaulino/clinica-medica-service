@@ -34,7 +34,7 @@ body {
 
 .mainContent {
 	grid-area: content;
-	text-align: center;
+	text-align: left;
 }
 
 .mainAside {
@@ -45,6 +45,10 @@ body {
 .mainFooter {
 	grid-area: footer;
 }
+.linha {
+	border-bottom: 1px solid black;
+	border-width: 60%
+}
 </style>
 </head>
 <body onload="window.print()">
@@ -53,25 +57,25 @@ body {
 			<h1>Prontuario Medico</h1>
 		</header>
 		<article class="mainContent">
-			<p th:text="'Exame: '+${session.consulta?.exame}"></p>
-			<p th:text="'Especialidade: '+${consulta?.especialidade}"></p>
-			<p th:text="'Diagnostico: '+${consulta?.diagnostico}"></p>
-			<p th:text="'Tratamento: '+${consulta?.tratamento}"></p>
-			<p th:text="'Sintomas: '+${consulta?.sintomas}"></p>
-			<p th:text="'Descrição: '+${consulta?.descricao}"></p>
-			<p th:text="'Data da Consulta: '+${consulta?.dtConsulta}"></p>
-			<p th:text="'Data de Retorno: '+${consulta?.dtRetorno}"></p>
+			<p>Exame:<div class="linha"></div></p>
+			<p>Especialidade:<div class="linha"></div></p>
+			<p>Sintomas:<div class="linha"></div></p>
+			<p>Descrição:<div class="linha"></div></p>
+			
+			<p th:text="'Data da Consulta: '+${consulta?.dtConsulta}" th:unless="${consulta?.dtConsulta == null || consulta?.dtConsulta == ''}"><div th:unless="${consulta?.dtConsulta == null || consulta?.dtConsulta == ''}" class="linha"></div></p>
+			<p th:text="'Data de Retorno: '+${consulta?.dtRetorno}" th:unless="${consulta?.dtRetorno == null || consulta?.dtRetorno == ''}"><div th:unless="${consulta?.dtRetorno == null || consulta?.dtRetorno == ''}" class="linha"></div></p>
+			
+			<p th:text="'Data da Consulta: '" th:unless="${consulta?.dtConsulta != null}"><div th:unless="${consulta?.dtConsulta != null}" class="linha"></div></p>
+			<p th:text="'Data de Retorno: '" th:unless="${consulta?.dtRetorno != null}"><div th:unless="${consulta?.dtRetorno != null}" class="linha"></div></p>
+			<div th:object="${consulta.paciente}">
+				<p th:text="'Assinatura do Paciente '+ *{nome}+':'"><div class="linha"></div></p>
+			</div>
 		</article>
 		<footer class="mainFooter">
 			<hr />
 			<div th:object="${consulta.medico}">
 				<p th:text="'Nome do Medico: '+ *{nome}"></p>
-				<p th:text="'CRM do Medico '+ *{idCrm}"></p>
-			</div>
-			<div th:object="${consulta.paciente}">
-				<p th:text="'Nome do Paciente '+ *{nome}"></p>
-				<p th:text="'CPF do Paciente '+ *{cpf}"></p>
-				<p th:text="'RG do Paciente '+ *{rg}"></p>
+				<p th:text="'CRM do Medico: '+ *{idCrm}"></p>
 			</div>
 
 
