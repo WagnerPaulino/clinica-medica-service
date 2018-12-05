@@ -58,7 +58,7 @@ public class ConsultaRest {
 		return ResponseEntity.notFound().build();
 	}
 
-	@GetMapping(path = "/api/count/consultas-proximos-dias")
+	@GetMapping(path = "/api/consultas/consultas-proximos-dias")
 	public ResponseEntity<?> countConsultasProximosDias() {
 		return ResponseEntity.ok(this.service.countConsultasProximosDias());
 	}
