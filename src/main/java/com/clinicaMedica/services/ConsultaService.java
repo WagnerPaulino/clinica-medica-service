@@ -1,5 +1,6 @@
 package com.clinicaMedica.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -38,6 +39,12 @@ public class ConsultaService {
 		Consulta consulta = repository.findById(id).orElse(new Consulta());
 		Hibernate.initialize(consulta);
 		return consulta; 
+	}
+	
+	public List<Consulta> findConsultaByPeriodo(LocalDate dtConsultaIni, LocalDate dtConsultaFim , LocalDate dtRetornoIni, LocalDate dtRetornoFim) {
+		List<Consulta> consultaList = repository.findConsultaByPeriodo(dtConsultaIni, dtConsultaFim, dtRetornoIni, dtRetornoFim);
+		Hibernate.initialize(consultaList);
+		return consultaList;
 	}
 
 	public boolean exists(Long id) {

@@ -1,5 +1,6 @@
 package com.clinicaMedica.rest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,13 +31,22 @@ public class ConsultaRest {
 
 	@Autowired
 	private ConsultaService service;
-	
+
 	@GetMapping("api/consultas/prontuario/{id}")
 	public ModelAndView index(@PathVariable("id") Long id) {
 		Consulta consulta = service.findProntuario(id);
 		ModelAndView mav = new ModelAndView("prontuario");
 		mav.addObject("consulta", consulta);
 		return mav;
+	}
+
+	@RequestMapping(value = "api/consultas/periodo")
+	public ResponseEntity<?> findConsultaByPeriodo(@RequestParam("dtConsultaIni") String dtConsultaIni,
+			@RequestParam("dtConsultaFim") String dtConsultaFim, @RequestParam("dtRetornoIni") String dtRetornoIni,
+			@RequestParam("dtRetornoFim") String dtRetornoFim) {
+		List<Consulta> consultaList = service.findConsultaByPeriodo(LocalDate.parse(dtConsultaIni),
+				LocalDate.parse(dtConsultaFim), LocalDate.parse(dtRetornoIni), LocalDate.parse(dtRetornoFim));
+		return ResponseEntity.ok(consultaList);
 	}
 
 	@GetMapping(path = "/api/consultas")
