@@ -11,7 +11,7 @@ import com.clinicaMedica.projections.CountConsultaProximosDias;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 
-	@Query(" select count(c.id) as count, c.dtConsulta as dtConsulta from Consulta c where c.dtConsulta > CURRENT_DATE and coalesce(c.realizada,false) = false group by c.dtConsulta order by c.dtConsulta asc ")
+	@Query(" select count(c.id) as count, c.dtConsulta as dtConsulta from Consulta c where cast(c.dtConsulta as date) > cast(CURRENT_DATE as date) and coalesce(c.realizada,false) = false group by c.dtConsulta order by c.dtConsulta asc ")
 	public List<CountConsultaProximosDias> countConsultasProximosDias();
 	
 	@Query(" select c from Consulta c where c.dtConsulta between ?1 and ?2 or c.dtRetorno between ?3 and ?4 ")
