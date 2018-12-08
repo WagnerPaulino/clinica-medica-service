@@ -57,7 +57,28 @@ body {
 		<header class="mainHeader">
 			<h1>Consultas</h1>
 		</header>
-		<article class="mainContent"></article>
+		<article class="mainContent">
+			<table border="1" style="width: 100%;">
+				<tr>
+					<td>Nome do Medico</td>
+					<td>Nome do Paciente</td>
+					<td>Data da Consulta</td>
+					<td>Data de Retorno</td>
+					<td>Tratamento</td>
+					<td>Exame</td>
+					<td>Sintomas</td>
+				</tr>
+				<tr th:each="consulta : ${consultas}">
+					<td th:text="${consulta.medico.nome}"></td>
+					<td th:text="${consulta.paciente.nome}"></td>
+					<td th:text="${consulta.dtConsulta}"></td>
+					<td th:text="${consulta.dtRetorno}"></td>
+					<td th:text="${consulta.tratamento}"></td>
+					<td th:text="${consulta.exame}"></td>
+					<td th:text="${consulta.sintomas}"></td>
+				</tr>
+			</table>
+		</article>
 		<footer class="mainFooter"> </footer>
 	</section>
 </body>

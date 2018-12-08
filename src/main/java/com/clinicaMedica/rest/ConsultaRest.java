@@ -51,7 +51,7 @@ public class ConsultaRest {
 		return ResponseEntity.ok(consultaList);
 	}
 	
-	@RequestMapping(value = "api/consultas/periodo")
+	@RequestMapping(value = "api/consultas/relatorio/periodo")
 	public ModelAndView relatorioConsultaByPeriodo(@RequestParam("dtConsultaIni") String dtConsultaIni,
 			@RequestParam("dtConsultaFim") String dtConsultaFim, @RequestParam("dtRetornoIni") String dtRetornoIni,
 			@RequestParam("dtRetornoFim") String dtRetornoFim) {

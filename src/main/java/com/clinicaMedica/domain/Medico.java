@@ -55,7 +55,7 @@ public class Medico extends Usuario implements Serializable {
 
 	public Medico() {
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
