@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Prontuario Médico</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+* {
+	padding: 0;
+	margin: 0;
+	transition: width 2s, height 2s;
+}
+
+body {
+	transition: width 2s, height 2s;
+}
+
+#main {
+	display: grid;
+	grid-template-rows: 15vh 10vh 55vh 20vh;
+	grid-template-areas: "header header" "content content" "content content"
+		"footer footer";
+	transition: width 2s, height 2s;
+}
+
+.mainHeader {
+	grid-area: header;
+	text-align: center;
+}
+
+.mainNav {
+	grid-area: nav;
+	text-align: center;
+}
+
+.mainContent {
+	grid-area: content;
+	text-align: left;
+}
+
+.mainAside {
+	grid-area: aside;
+	text-align: center;
+}
+
+.mainFooter {
+	grid-area: footer;
+}
+
+.linha {
+	border-bottom: 1px solid black;
+	border-width: 60%
+}
+</style>
+</head>
+<body onload="window.print()">
+	<section id="main">
+		<header class="mainHeader">
+			<h1>Consultas</h1>
+		</header>
+		<article class="mainContent"></article>
+		<footer class="mainFooter"> </footer>
+	</section>
+</body>
+</html>

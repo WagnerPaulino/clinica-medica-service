@@ -1,6 +1,7 @@
 package com.clinicaMedica.rest;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -44,9 +45,21 @@ public class ConsultaRest {
 	public ResponseEntity<?> findConsultaByPeriodo(@RequestParam("dtConsultaIni") String dtConsultaIni,
 			@RequestParam("dtConsultaFim") String dtConsultaFim, @RequestParam("dtRetornoIni") String dtRetornoIni,
 			@RequestParam("dtRetornoFim") String dtRetornoFim) {
-		List<Consulta> consultaList = service.findConsultaByPeriodo(LocalDate.parse(dtConsultaIni),
-				LocalDate.parse(dtConsultaFim), LocalDate.parse(dtRetornoIni), LocalDate.parse(dtRetornoFim));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		List<Consulta> consultaList = service.findConsultaByPeriodo(LocalDate.parse(dtConsultaIni,formatter),
+				LocalDate.parse(dtConsultaFim,formatter), LocalDate.parse(dtRetornoIni,formatter), LocalDate.parse(dtRetornoFim,formatter));
 		return ResponseEntity.ok(consultaList);
+	}
+	
+	@RequestMapping(value = "api/consultas/periodo")
+	public ModelAndView relatorioConsultaByPeriodo(@RequestParam("dtConsultaIni") String dtConsultaIni,
+			@RequestParam("dtConsultaFim") String dtConsultaFim, @RequestParam("dtRetornoIni") String dtRetornoIni,
+			@RequestParam("dtRetornoFim") String dtRetornoFim) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		List<Consulta> consultaList = service.findConsultaByPeriodo(LocalDate.parse(dtConsultaIni,formatter),
+				LocalDate.parse(dtConsultaFim,formatter), LocalDate.parse(dtRetornoIni,formatter), LocalDate.parse(dtRetornoFim,formatter));
+		ModelAndView mav = new ModelAndView("consulta-periodo","consultas",consultaList);
+		return mav;
 	}
 
 	@GetMapping(path = "/api/consultas")
