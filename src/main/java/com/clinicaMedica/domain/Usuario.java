@@ -24,6 +24,7 @@ public class Usuario implements Serializable {
 	private String cidade;
 	private String bairro;
 	private String cep;
+	private String estado;
 
 	public Usuario() {
 	}
@@ -130,6 +131,14 @@ public class Usuario implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	@Override
